@@ -14,9 +14,8 @@ final ThemeData kIOSTheme = ThemeData(
 );
 
 final ThemeData kDefaultTheme = ThemeData(
-  colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple).copyWith(
-    secondary: Colors.orangeAccent[400],
-  ),
+  colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
+      .copyWith(secondary: Colors.orangeAccent[400]),
 );
 
 String _name = 'Simon';
@@ -104,7 +103,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
     setState(() {
       _isComposing = false;
     });
-    ChatMessage message = ChatMessage(
+    var message = ChatMessage(
       animationController: AnimationController(
         duration: const Duration(milliseconds: 700),
         vsync: this,
@@ -157,30 +156,28 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   }
 
   Widget _buildTextComposer() {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Row(
-        children: [
-          Flexible(
-            child: TextField(
-              controller: _textController,
-              onChanged: (text) {
-                setState(() {
-                  _isComposing = text.isNotEmpty;
-                });
-              },
-              onSubmitted: _isComposing ? _handleSubmitted : null,
-              decoration: const InputDecoration.collapsed(
-                hintText: 'Send a message',
+    return IconTheme(
+      data: IconThemeData(color: Theme.of(context).colorScheme.secondary),
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Row(
+          children: [
+            Flexible(
+              child: TextField(
+                controller: _textController,
+                onChanged: (text) {
+                  setState(() {
+                    _isComposing = text.isNotEmpty;
+                  });
+                },
+                onSubmitted: _isComposing ? _handleSubmitted : null,
+                decoration: const InputDecoration.collapsed(
+                  hintText: 'Send a message',
+                ),
+                focusNode: _focusNode,
               ),
-              focusNode: _focusNode,
             ),
-          ),
-          IconTheme(
-            data: IconThemeData(
-              color: Theme.of(context).colorScheme.secondary,
-            ),
-            child: Container(
+            Container(
               margin: const EdgeInsets.symmetric(horizontal: 4.0),
               child: Theme.of(context).platform == TargetPlatform.iOS
                   ? CupertinoButton(
@@ -196,8 +193,8 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                           : null,
                     ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
