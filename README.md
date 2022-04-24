@@ -1,4 +1,7 @@
 # codelabs research_app
 
-Will create a branch for each codelabs and track the learnings from all the flutter codelabs by google
+Friendly chat app to see how messages can be sent, state changing certain features/theme and using the device to dictate how certain things look
 
+| Main chat screen | With chat messages |
+| ----------- | ----------- |
+| ![Main chat screen](/assets/mainChat.png) | ![With chat messages](/assets/withChats.png) |
